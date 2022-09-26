@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="en">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit user</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<body>
+<div class="container">
+    <div>
+        <h2><p class="text-center">Edit information about user</p></h2>
+    </div>
+    <div>
+        <form th:method="post" th:action="@{/users/{id}(id=${user.getId()})}" th:object="${user}">
+            <div class="form-group">
+                <label for="Id">Id</label>
+                <input type="text" class="form-control" th:field="*{id}" id="Id" aria-describedby="emailHelp" th:placeholder="${user.getId()}" readonly>
+            </div>
+            <div class="form-group">
+                <label for="Name">Name</label>
+                <input type="text" class="form-control" th:field="*{name}" id="Name" aria-describedby="emailHelp" th:placeholder="${user.getName()}">
+            </div>
+            <div class="form-group">
+                <label for="Age">Age</label>
+                <input type="text" class="form-control" th:field="*{age}" id="Age" th:placeholder="${user.getAge()}">
+            </div>
+            <div class="form-group">
+                <label for="Dep">Department</label>
+                <input type="text" class="form-control" th:field="*{department}" id="Dep" th:placeholder="${user.getDepartment()}">
+            </div>
+            <button type="submit" class="btn btn-primary">Save</button>
+            <a class="btn btn-danger" th:href="@{/users}" role="button">Cancel</a>
+        </form>
+    </div>
+</div>
+</body>
+</html>
