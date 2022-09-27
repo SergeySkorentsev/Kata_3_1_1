@@ -12,7 +12,7 @@
         <h2><p class="text-center">Enter information about user:</p></h2>
     </div>
     <div>
-    <form th:method="post" th:action="@{/users}" th:object="${user}">
+    <form th:method="post" th:action="@{/}" th:object="${user}">
         <div class="form-group">
             <label for="Name">Name</label>
             <input type="text" class="form-control" th:field="*{name}" id="Name" aria-describedby="emailHelp" placeholder="Enter name">
@@ -26,7 +26,7 @@
             <input type="text" class="form-control" th:field="*{department}" id="Dep" placeholder="Department">
         </div>
         <button type="submit" class="btn btn-primary">Add user</button>
-        <a class="btn btn-danger" th:href="@{/users}" role="button">Cancel</a>
+        <a class="btn btn-danger" th:href="@{/}" role="button">Cancel</a>
     </form>
     </div>
 </div>

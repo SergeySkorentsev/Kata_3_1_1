@@ -3,17 +3,19 @@ package web.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import web.model.User;
 import web.service.UserService;
 
 @Controller
-@RequestMapping("/users")
 public class UserController {
     @Autowired
     private UserService userService;
 
-    @GetMapping()
+    @GetMapping(value = "/")
     public String listUsers(ModelMap model) {
         model.addAttribute("users", userService.getAllUsers());
         return "users";
@@ -25,10 +27,10 @@ public class UserController {
         return "create";
     }
 
-    @PostMapping()
+    @PostMapping("/")
     public String addUser(@ModelAttribute("user") User user) {
         userService.addUser(user);
-        return "redirect:/users";
+        return "redirect:/";
     }
 
     @GetMapping("/{id}/edit")
@@ -40,13 +42,13 @@ public class UserController {
     @PostMapping("/{id}")
     public String updateUser(@ModelAttribute("user") User user) {
         userService.updateUser(user);
-        return "redirect:/users";
+        return "redirect:/";
     }
 
     @PostMapping("/{id}/delete")
     public String deleteUser(@PathVariable("id") int id) {
         User user = userService.getUser(id);
         userService.deleteUser(user);
-        return "redirect:/users";
+        return "redirect:/";
     }
 }
